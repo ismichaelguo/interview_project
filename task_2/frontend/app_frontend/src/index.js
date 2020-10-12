@@ -1,17 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import "semantic-ui-css/semantic.min.css";
+import { Provider } from 'react-redux'
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createReducer } from "redux-orm";
 
+import orm from '../src/redux/orm';
+
+
+
+
+const rootReducer = combineReducers({
+  //reducer method that returns a reducer function you can plug in to a root reducer,
+  //have an orm branch in your state
+  orm: createReducer(orm),
+});
+const store = createStore(rootReducer, composeWithDevTools(
+  applyMiddleware(),
+));
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store ={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
