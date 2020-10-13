@@ -1,0 +1,11 @@
+.headerContainer{
+    background-image:linear-gradient(to right, #67B26F , #4ca2cd);
+    margin-bottom: 3rem;
+    &__icon{
+        padding-top: 2rem;
+        color:white
+    }
+    &__title{
+        color:#ffffff
+    }
+}

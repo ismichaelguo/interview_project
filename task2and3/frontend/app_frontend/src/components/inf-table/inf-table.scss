@@ -1,0 +1,13 @@
+.tableContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    &__table{
+        width:95%;
+        // & form{
+        //     width:90%
+        // }
+    }
+
+}
