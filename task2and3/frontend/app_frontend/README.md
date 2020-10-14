@@ -1,68 +1,98 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Interview test project -- Michael
 
-## Available Scripts
+## About
 
-In the project directory, you can run:
+There are total 3 tasks in this test, the file structure is shown below.
 
-### `npm start`
+├── package-lock.json<br />
+├── task2and3<br />
+│   ├── backend<br />
+│   └── frontend<br />
+├── task_1_1<br />
+│   ├── ReadMe.txt<br />
+│   └── index.html<br />
+└── task_1_2<br />
+├── db.sqlite3<br />
+├── helloworld<br />
+├── manage.py<br />
+└── src<br />
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Task One
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Task description
 
-### `npm test`
+- Create an instance with the CentOS operating system
+- Create a “HelloWorld” webpage hosted on the Apache(httpd) server
+- Createa Django(https://www.djangoproject.com/) project with a “HelloWorld” page
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- CentOS 8 (from https://www.centos.org/)
+- VMware WorkStation(from https://www.vmware.com/products/workstation-pro.html)
+- Apache Server
+- Python 3
+- Django
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installing
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Install CentOS 8 on VMware WorkStation
+- Install httpd: yum -y install httpd
+- Install python3: sudo dnf install python3 -y
+- Install Django: python3 -m pip3 install Django
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Setup Task 1-1
 
-### `npm run eject`
+- Create a file "index.html" under the directory /var/www/html
+- Go to the http://localhost:80 to see the hello world website
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Setup Task 1-2
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Enter into directory '/interviewproject-michaelg/task_1_2': python3 manage.py runserver
+- Open browser with link http://127.0.0.1:8000/helloworld/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Task 2
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Task description
 
-## Learn More
+- Develop the backend with Django and Django RestfulFramework
+- Develop a web in React.js as the FrontEnd
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Prerequisites
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- CentOS 8 (from https://www.centos.org/)
+- VMware WorkStation(from https://www.vmware.com/products/workstation-pro.html)
+- Python 3
+- Django
+- Node
+- React
+- MySQL Database
 
-### Code Splitting
+### Frontend
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Enter into directory './task2and3/frontend/app_frontend'
 
-### Analyzing the Bundle Size
+- Install dependencies: npm install
+- Get started: npm start
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Backend
 
-### Making a Progressive Web App
+Enter into directory
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Installing
 
-### Advanced Configuration
+- Install django rest framework: pip3 install djangorestframework
+- Install django-cors-headers: python3 -m pip install django-cors-headers
+- Install mysql client: pip3 install mysqlclient
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Setup Backend
 
-### Deployment
+Enter into directory './task2and3/backend/src'
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- Modify your MySQL database configuration in file under the directory './app_backend/settings.py'
+- python3 manage.py runserver
 
-### `npm run build` fails to minify
+## Task 3
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Backend Testing
+
+Get Started: python3 manege.py test

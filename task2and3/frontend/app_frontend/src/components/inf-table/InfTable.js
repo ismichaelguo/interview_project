@@ -19,16 +19,22 @@ function InfTable(props) {
           </Table.Header>
 
           <Table.Body>
-            {users.map((user, index) => {
-              return (
-                <Table.Row key={index}>
-                  <Table.Cell>{`${user._fields.firstName} ${user._fields.lastName}`}</Table.Cell>
-                  <Table.Cell>{user._fields.age}</Table.Cell>
-                  <Table.Cell>{user._fields.email}</Table.Cell>
-                  <Table.Cell>{user._fields.income}</Table.Cell>
-                </Table.Row>
-              );
-            })}
+            {users.length > 0 ? (
+              users.map((user, index) => {
+                return (
+                  <Table.Row key={index}>
+                    <Table.Cell>{`${user._fields.firstName} ${user._fields.lastName}`}</Table.Cell>
+                    <Table.Cell>{user._fields.age}</Table.Cell>
+                    <Table.Cell>{user._fields.email}</Table.Cell>
+                    <Table.Cell>{user._fields.income}</Table.Cell>
+                  </Table.Row>
+                );
+              })
+            ) : (
+              <Table.Row col>
+                <Table.Cell>There is no record found!</Table.Cell>
+              </Table.Row>
+            )}
           </Table.Body>
         </Table>
       </Segment>
