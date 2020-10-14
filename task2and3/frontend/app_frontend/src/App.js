@@ -4,15 +4,14 @@ import PageHeader from "./components/header/PageHeader";
 import FormAndInf from "./components/form/FormAndInf";
 import Footer from "./components/footer/Footer";
 //semantic ui
-import { Segment,Icon } from "semantic-ui-react";
+import { Segment, Icon } from "semantic-ui-react";
 //css
-import './app.scss'
+import "./app.scss";
 
 function App() {
   return (
     <Fragment>
       <PageHeader />
-
       <FormAndInf />
       <Footer />
     </Fragment>

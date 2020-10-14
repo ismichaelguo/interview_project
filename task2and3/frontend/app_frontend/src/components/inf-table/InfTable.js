@@ -31,8 +31,10 @@ function InfTable(props) {
                 );
               })
             ) : (
-              <Table.Row col>
-                <Table.Cell>There is no record found!</Table.Cell>
+              <Table.Row>
+                <Table.Cell colSpan="4" style={{ textAlign: "center" }}>
+                  There is no record found!
+                </Table.Cell>
               </Table.Row>
             )}
           </Table.Body>
