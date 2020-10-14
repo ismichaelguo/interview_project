@@ -50,7 +50,8 @@ There are total 3 tasks in this test, the file structure is shown below.
 - Enter into directory '/interviewproject-michaelg/task_1_2': python3 manage.py runserver
 - Open browser with link http://127.0.0.1:8000/helloworld/
 
-## Task 2
+
+## Task Two
 
 ### Task description
 
@@ -91,8 +92,9 @@ Enter into directory './task2and3/backend/src'
 - Modify your MySQL database configuration in file under the directory './app_backend/settings.py'
 - python3 manage.py runserver
 
-## Task 3
+
+## Task Three
 
 ## Backend Testing
-
-Get Started: python3 manege.py test
+Enter into directory './task2and3/backend/src'
+- Get Started: python3 manege.py test
