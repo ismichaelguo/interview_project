@@ -10,31 +10,70 @@ import { useDispatch } from 'react-redux'
 import axios from "axios";
 function FormAndINf(props) {
   const [submitFlag, setSubmitFlag] = useState(false);
+  const [userInf,setUserInf] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    age: "",
+    income: "",
+  })
   const dispatch = useDispatch()
 
+  const handleFirstName=(e)=>{
+    setUserInf({
+      ...userInf,
+      firstName:e.target.value
+    })
+  }
 
-  const handleSubmit = (e) => {
+  const handleLastName=(e)=>{
+    setUserInf({
+      ...userInf,
+      lastName:e.target.value
+    })
+  }
+
+  const handleEmail=(e)=>{
+    setUserInf({
+      ...userInf,
+      email:e.target.value
+    })
+  }
+
+  const handleAge=(e)=>{
+    setUserInf({
+      ...userInf,
+      age:e.target.value
+    })
+  }
+  const handleIncome=(e)=>{
+    setUserInf({
+      ...userInf,
+      income:e.target.value
+    })
+  }
+
+
+
+  const handleSubmit = () => {
     //organise the user inputs into new object user
-    const user = {
-      firstName: e.target[0].value,
-      lastName: e.target[1].value,
-      email: e.target[2].value,
-      age: e.target[3].value,
-      income: e.target[4].value,
-    };
+
     //dispatch action to update state users
     dispatch({
-      type:'CREATE_USER',payload:{user}
+      type:'CREATE_USER',payload:{userInf}
   })
     //sent create new user request to bankend
-    axios.post("http://127.0.0.1:8000/api/add_user", user);
+    axios.post("http://127.0.0.1:8000/api/add_user", userInf);
     setSubmitFlag(true);
     //clear inputs
-    e.target[0].value = ""
-    e.target[1].value = ""
-    e.target[2].value = ""
-    e.target[3].value = ""
-    e.target[4].value = ""
+    setUserInf({
+      firstName: "",
+      lastName: "",
+      email: "",
+      age: "",
+      income: "",
+    })
+
 
 
   };
@@ -60,30 +99,30 @@ function FormAndINf(props) {
       <Grid.Column style={{ width: "100" }}>
         <div className="formContainer">
           <Segment className="formContainer__form">
-            <Form onSubmit={handleSubmit}>
+            <Form >
               <Form.Field>
                 <label>First Name</label>
-                <Input icon="address card" iconPosition="left" placeholder="First Name" required />
+                <Input icon="address card" iconPosition="left" placeholder="First Name" required onChange={handleFirstName} value={userInf.firstName} />
               </Form.Field>
               <Form.Field>
                 <label>Last Name</label>
-                <Input icon="address card" iconPosition="left" placeholder="Last Name" required />
+                <Input icon="address card" iconPosition="left" placeholder="Last Name" required onChange={handleLastName} value={userInf.lastName} />
 
               </Form.Field>
               <Form.Field>
                 <label>Email</label>
-                <Input icon="envelope outline icon" iconPosition="left" placeholder="Email" required />
+                <Input icon="envelope outline icon" iconPosition="left" placeholder="Email" required onChange={handleEmail} value={userInf.email} />
               </Form.Field>
               <Form.Field>
                 <label>Age</label>
-                <Input icon="hourglass half icon" iconPosition="left" placeholder="Age" required />
+                <Input icon="hourglass half icon" iconPosition="left" placeholder="Age" required onChange={handleAge} value={userInf.age} />
 
               </Form.Field>
               <Form.Field>
                 <label>Income</label>
-                <Input icon="money bill alternate icon" iconPosition="left" placeholder="Income" required />
+                <Input icon="money bill alternate icon" iconPosition="left" placeholder="Income" required onChange={handleIncome} value={userInf.income} />
               </Form.Field>
-              <Button primary type="submit">
+              <Button primary type="submit" onClick={handleSubmit}>
                 Submit
               </Button>
             </Form>
