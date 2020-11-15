@@ -2,9 +2,11 @@ import React from "react";
 import { Segment, Icon, Label, Menu, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { usersSelector } from "../../redux/selector";
+import { useSelector } from "react-redux";
+
 import "./inf-table.scss";
 function InfTable(props) {
-  const { users } = props;
+  const users = useSelector(usersSelector);
   return (
     <div className="tableContainer">
       <Segment className="tableContainer__table">
@@ -20,13 +22,15 @@ function InfTable(props) {
 
           <Table.Body>
             {users.length > 0 ? (
-              users.map((user, index) => {
+              users.map((user) => {
+                const userInf = user.user;
+
                 return (
-                  <Table.Row key={index}>
-                    <Table.Cell>{`${user._fields.firstName} ${user._fields.lastName}`}</Table.Cell>
-                    <Table.Cell>{user._fields.age}</Table.Cell>
-                    <Table.Cell>{user._fields.email}</Table.Cell>
-                    <Table.Cell>{user._fields.income}</Table.Cell>
+                  <Table.Row key={user.id}>
+                    <Table.Cell>{`${userInf.firstName} ${userInf.lastName}`}</Table.Cell>
+                    <Table.Cell>{userInf.age}</Table.Cell>
+                    <Table.Cell>{userInf.email}</Table.Cell>
+                    <Table.Cell>{userInf.income}</Table.Cell>
                   </Table.Row>
                 );
               })
@@ -43,12 +47,6 @@ function InfTable(props) {
     </div>
   );
 }
-// This function takes the Redux state, runs the
-// selectors and returns the props passed to App.
-function stateToProps(state) {
-  return {
-    users: usersSelector(state),
-  };
-}
 
-export default connect(stateToProps, null)(InfTable);
+
+export default InfTable;

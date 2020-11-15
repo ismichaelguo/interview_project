@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Grid, Image, Button, Form, Segment } from "semantic-ui-react";
+import React, { useEffect, useState, useCallback } from "react";
+import { Grid, Image, Button, Form, Segment, Input } from "semantic-ui-react";
 import "./form.scss";
 import InfTable from "../inf-table/InfTable";
 import { connect } from "react-redux";
 import { createUser } from "../../redux/actions";
 import { usersSelector, userSelector } from "../../redux/selector";
+import { useDispatch } from 'react-redux'
+
 import axios from "axios";
 function FormAndINf(props) {
   const [submitFlag, setSubmitFlag] = useState(false);
+  const dispatch = useDispatch()
+
 
   const handleSubmit = (e) => {
     //organise the user inputs into new object user
@@ -19,7 +23,9 @@ function FormAndINf(props) {
       income: e.target[4].value,
     };
     //dispatch action to update state users
-    props.createUser(user);
+    dispatch({
+      type:'CREATE_USER',payload:{user}
+  })
     //sent create new user request to bankend
     axios.post("http://127.0.0.1:8000/api/add_user", user);
     setSubmitFlag(true);
@@ -57,38 +63,25 @@ function FormAndINf(props) {
             <Form onSubmit={handleSubmit}>
               <Form.Field>
                 <label>First Name</label>
-                <div className="ui left icon input">
-                  <input type="text" placeholder="First Name" required />
-                  <i className="address card icon"></i>
-                </div>
+                <Input icon="address card" iconPosition="left" placeholder="First Name" required />
               </Form.Field>
               <Form.Field>
                 <label>Last Name</label>
-                <div className="ui left icon input">
-                  <input type="text" placeholder="Last Name" required />
-                  <i className="address card icon"></i>
-                </div>
+                <Input icon="address card" iconPosition="left" placeholder="Last Name" required />
+
               </Form.Field>
               <Form.Field>
                 <label>Email</label>
-                <div className="ui left icon input">
-                  <input type="email" placeholder="Email" required />
-                  <i className="envelope outline icon"></i>
-                </div>
+                <Input icon="envelope outline icon" iconPosition="left" placeholder="Email" required />
               </Form.Field>
               <Form.Field>
                 <label>Age</label>
-                <div className="ui left icon input">
-                  <input type="number" placeholder="Age" required />
-                  <i className="hourglass half icon"></i>
-                </div>
+                <Input icon="hourglass half icon" iconPosition="left" placeholder="Age" required />
+
               </Form.Field>
               <Form.Field>
                 <label>Income</label>
-                <div className="ui left icon input">
-                  <input type="number" placeholder="Income" required />
-                  <i className="money bill alternate icon"></i>
-                </div>
+                <Input icon="money bill alternate icon" iconPosition="left" placeholder="Income" required />
               </Form.Field>
               <Button primary type="submit">
                 Submit
@@ -110,16 +103,5 @@ function FormAndINf(props) {
   );
 }
 
-// This maps our action creators to props and binds
-// them to dispatch.
-const dispatchToProps = {
-  createUser,
-};
 
-function stateToProps(state) {
-  return {
-    users: usersSelector(state),
-    user: userSelector(state),
-  };
-}
-export default connect(stateToProps, dispatchToProps)(FormAndINf);
+export default FormAndINf;

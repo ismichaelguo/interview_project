@@ -28,9 +28,6 @@ class PersonModelTests(TestCase):
         self.assertEqual(self.user1.age,21)
         self.assertEqual(self.user1.income,26615)
     
-    def test_same_age_user(self):
-        user_num = Person.objects.filter(age=21)
-        self.assertEqual(user_num.count(),2)
 
 
 class TestApis(TestCase):
@@ -45,9 +42,17 @@ class TestApis(TestCase):
             "age": 23,
             "income": 26615
         }
+        self.wrong_data = {
+            "firstName": "Mike",
+            "lastName": "John",
+            "email": "not a email",
+            "age": "test",
+            "income": 26615
+        }
 
     def test_user_list(self):
         response = self.client.get(self.list_url)
+        import pdb; pdb.set_trace()
         self.assertEqual(response.status_code, 200)
 
     def test_user_add(self):
@@ -56,4 +61,11 @@ class TestApis(TestCase):
             self.data
         )
         self.assertEqual(response.status_code, 200)
+    
+    def test_add_wrong_user(self):
+        response = self.client.post(
+            self.create_url,
+            self.wrong_data
+        )
+        self.assertEqual(response.status_code,400)
 
