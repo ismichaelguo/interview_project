@@ -23,8 +23,7 @@ function InfTable(props) {
           <Table.Body>
             {users.length > 0 ? (
               users.map((user) => {
-                const userInf = user.user;
-
+                const userInf = user.userInf;
                 return (
                   <Table.Row key={user.id}>
                     <Table.Cell>{`${userInf.firstName} ${userInf.lastName}`}</Table.Cell>
